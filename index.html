@@ -17,6 +17,17 @@
     <script type="module" src = "./StarRating.js"></script> 
 </head>
 <body>
+    <tamplate id="animal-tamplate">
+        <style>
+            .animal{
+                display:flex;
+            }
+            .nam{
+                font-weight: bold;
+            }
+        </style>
+    
+    </tamplate>
     <h1>DCC206 - Star Rating</h1>
     <p clas="star">As estrelas aqui definem o quanto gosto dos bichinho</p>
     <ul>
@@ -33,5 +44,9 @@
             <star-rating stars="5"/>
         </li>
     </ul>
+    <script>
+        const animalTemplate = document.querySelector("#animal-template").content;
+        const novoAnimal = animalTemplate.cloneNode(true);
+    </script>
 </body>
 </html>
