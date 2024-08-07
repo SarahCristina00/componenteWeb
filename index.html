@@ -17,12 +17,12 @@
     <script type="module" src = "./StarRating.js"></script> 
 </head>
 <body>
-    <tamplate id="animal-tamplate">
+    <template id="animal-template">
         <style>
             .animal{
                 display:flex;
             }
-            .nam{
+            .name{
                 font-weight: bold;
             }
         </style>
@@ -47,6 +47,14 @@
     <script>
         const animalTemplate = document.querySelector("#animal-template").content;
         const novoAnimal = animalTemplate.cloneNode(true);
+        console.log(novoAnimal);
+        novoAnimal.querySelector(".name").textContent="🦜";
+        novoAnimal.querySelector("star-rating").setAttribute = "5";
+        const ul = document.querySelector("ul");
+        const li = document.createElement("li");
+    
+        ul.append(novoAnimal);
+        ul.append(li);
     </script>
 </body>
 </html>

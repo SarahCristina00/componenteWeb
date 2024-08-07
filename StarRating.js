@@ -17,7 +17,8 @@ export default class StarRating extends HTMLElement{
         return;
     }
     this.#stars = novoValor;
-    this.#render;
+    this.#render();
+
     connectedCallback(){
         console.log("Star Rating conectado");
     }
@@ -46,6 +47,6 @@ export default class StarRating extends HTMLElement{
         this.#shadowRoot.append(star);
     }
 }
+}
 
 customElements.define("star-rating", StarRating);
-}
