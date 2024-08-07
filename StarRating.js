@@ -1,5 +1,6 @@
 export default class StarRating extends HTMLElement{
     #stars=3;
+    #shadow;
     constructor(){
         super();
         console.log("Um Star Rating foi criado!");
@@ -11,7 +12,7 @@ export default class StarRating extends HTMLElement{
     }
 
     set stars(novoValor){
-        if(novoValor<1 || novoValor>5)return;
+        if(novoValor<1 || novoValor>5)
         this.setAttribute("stars", this.#stars); 
         return;
     }
@@ -30,23 +31,21 @@ export default class StarRating extends HTMLElement{
     }
 
 #render(){
-    this.innerHTML = `
+    this.shadowRoot.innerHTML = `
     <style>
     .star{
         display: inline-block;
         transform: rotate(45deg);
     }
     </style>
-    
-    `
-    this.innerHTML = " ";
+    `;
     for(let i = 0; i<this.#stars; i++){
         const star = document.createElement("span");
         star.classList.add("star");
         star.textContent = " ⭐";
-        this.#shadow.append(star);
+        this.#shadowRoot.append(star);
     }
-}   
+}
 
 customElements.define("star-rating", StarRating);
 }
