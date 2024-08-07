@@ -3,6 +3,7 @@ export default class StarRating extends HTMLElement{
     constructor(){
         super();
         console.log("Um Star Rating foi criado!");
+        this.#shadow = this.attachShadow({mode:"close"});
         this.stars = 1;
     }
     get stars(){
@@ -11,15 +12,11 @@ export default class StarRating extends HTMLElement{
 
     set stars(novoValor){
         if(novoValor<1 || novoValor>5)return;
-        this.#stars = novoValor;
-        this.innerHTML = " ";
-        for(let i = 0; i<this.#stars; i++){
-            this.textContent +="⭐";
-        }
+        this.setAttribute("stars", this.#stars); 
+        return;
     }
-    static get observedAttributes(){
-        return["stars"];
-    }
+    this.#stars = novoValor;
+    this.#render;
     connectedCallback(){
         console.log("Star Rating conectado");
     }
@@ -32,6 +29,24 @@ export default class StarRating extends HTMLElement{
 
     }
 
-}
+#render(){
+    this.innerHTML = `
+    <style>
+    .star{
+        display: inline-block;
+        transform: rotate(45deg);
+    }
+    </style>
+    
+    `
+    this.innerHTML = " ";
+    for(let i = 0; i<this.#stars; i++){
+        const star = document.createElement("span");
+        star.classList.add("star");
+        star.textContent = " ⭐";
+        this.#shadow.append(star);
+    }
+}   
 
 customElements.define("star-rating", StarRating);
+}
